@@ -148,17 +148,32 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       width: 100%;
-      padding: 16px 24px;
-      background: linear-gradient(180deg, #2EA84F 0%, #1A6B3C 100%);
+      padding: 16px 12px;
+      background: linear-gradient(120deg, #00c853, #00e676, #1de9b6, #00b0ff, #00e676, #00c853);
+      background-size: 300% 100%;
       color: #fff;
-      font-size: 17px;
+      font-size: clamp(12px, 4vw, 17px);
       font-weight: 900;
       letter-spacing: .03em;
-      border-radius: 8px;
-      box-shadow: 0 4px 0 #0D4220, 0 8px 20px rgba(26,107,60,.28);
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.85);
+      box-shadow: 0 4px 0 #0a7d3c, 0 0 18px rgba(0,230,118,.55), 0 8px 24px rgba(0,200,83,.35);
+      text-shadow: 0 1px 3px rgba(0,80,40,.45);
       transition: transform .12s, box-shadow .12s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -80%;
+      width: 55%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,.65), transparent);
+      transform: skewX(-20deg);
+      animation: btn-shine 2.2s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .btn:active {
@@ -911,9 +926,8 @@
     }
 
     .final-cta .btn {
-      background: #fff;
-      color: var(--green);
-      box-shadow: 0 4px 0 rgba(0,0,0,.15), 0 8px 20px rgba(0,0,0,.12);
+      border-color: #FFE082;
+      box-shadow: 0 4px 0 #0a7d3c, 0 0 22px rgba(255,224,130,.6), 0 8px 24px rgba(0,200,83,.35);
     }
 
     .final-cta .btn-note { color: rgba(255,255,255,.6); }
@@ -1120,10 +1134,26 @@
 
     @keyframes zoom-pulse {
       0%, 100% { transform: scale(1); }
-      50%       { transform: scale(1.03); }
+      50%       { transform: scale(1.06); }
     }
 
-    .btn { animation: zoom-pulse 2s ease-in-out infinite; }
+    @keyframes gradient-flow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes btn-shine {
+      0%       { left: -80%; }
+      55%,100% { left: 130%; }
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 4px 0 #0a7d3c, 0 0 14px rgba(0,230,118,.45), 0 8px 24px rgba(0,200,83,.3); }
+      50%      { box-shadow: 0 4px 0 #0a7d3c, 0 0 30px rgba(0,230,118,.9), 0 8px 30px rgba(0,200,83,.55); }
+    }
+
+    .btn { animation: zoom-pulse 1.4s ease-in-out infinite, gradient-flow 3s linear infinite, glow-pulse 1.4s ease-in-out infinite; }
     .btn:active { animation: none; }
 
     /* ━━━ MID CTA ━━━ */
@@ -1160,11 +1190,11 @@
   </div>
 
   <div class="hero-body">
-    <h1>スマホ1台・週1回。<br><em><span class="marker-red">毎月4,000円<br>＋成果報酬2~100万円以上が入る</span></em><br>仕組みがあります。</h1>
+    <h1>週1回10分から始められます。<br>スマホ以外は不必要。<br><em><span class="marker-red">週に1度1000円獲得可能。<br>＋@で3~100万円以上の<br>成果報酬をお渡しします。</span></em></h1>
     <p class="hero-lead">
       <strong>コンサル費<span class="hero-zero">ゼロ</span>・元手<span class="hero-zero">ゼロ</span>。</strong><br>
-      200名越えが実績を出した<span class="gold-kw">シークレット企画</span><br>の仕組みを、
-      <span class="marker-red">LINE限定の無料セミナー</span>で大公開！
+      200名以上が成功している<span class="gold-kw">シークレット企画</span><br>の全容を、
+      <span class="marker-red">9/12(土)・9/13(日)</span>に大公開しちゃいます！
     </p>
     <a href="https://line.me/ti/g2/uGiBnGzHxPg2zaxeBBlS9ms6W5iAS__2Zg-8cw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" class="btn js-up">
       <img src="https://enyuya.com/LP/images/LINE_Brand_icon.png" alt="LINE">
@@ -1183,7 +1213,7 @@
     </div>
     <div class="stat">
       <div class="stat-circle">
-        <span class="n">0<span class="u">円</span></span>
+        <span class="n">無料</span>
       </div>
       <span class="l">コスト・手元金<br>すべて不要</span>
     </div>
@@ -1202,11 +1232,11 @@
     <ul class="pain-list">
       <li class="js-up"><img src="https://enyuya.com/LP/ver2/images/worries.png" alt="" class="pain-icon">コンサルに入ったが、なかなか結果が出ない</li>
       <li class="js-up"><img src="https://enyuya.com/LP/ver2/images/worries.png" alt="" class="pain-icon">売り上げは出るが、手のこりが少ない</li>
-      <li class="js-up"><img src="https://enyuya.com/LP/ver2/images/worries.png" alt="" class="pain-icon">仕入れ・手元金が必要と言われ、始める前に断念</li>
-      <li class="js-up"><img src="https://enyuya.com/LP/ver2/images/worries.png" alt="" class="pain-icon">月収30万円以上利益は出るけど、現金が手元に残りにくい</li>
+      <li class="js-up"><img src="https://enyuya.com/LP/ver2/images/worries.png" alt="" class="pain-icon">仕入れ・手元金が必要で思うように行動ができない</li>
+      <li class="js-up"><img src="https://enyuya.com/LP/ver2/images/worries.png" alt="" class="pain-icon">月収30万円以上利益は出るけど、キャッシュが増えない</li>
     </ul>
     <div class="pain-answer js-up">
-      <p>今回の<span class="gold-kw">シークレット企画</span>は、<br>今までとは<strong><span class="marker-red">全く違う</span></strong>物販です！</p>
+      <p>今回の<span class="gold-kw">シークレット企画</span>は、<br>今までとは<strong><span class="marker-red">全く違う</span></strong>物販手法です！</p>
     </div>
   </section>
 
@@ -1551,8 +1581,8 @@
     <h2>詳細を知りたい方は<br>今すぐ参加!</h2>
     <p class="final-lead">
       コンサル費<span class="final-zero">ゼロ</span>・元手<span class="final-zero">ゼロ</span>。<br>
-      200名越えが実績を出した<span class="final-gold">シークレット企画</span><br>
-      の仕組みを、<span class="final-marker">LINE限定の無料セミナー</span>で大公開！
+      200名以上が成功している<span class="final-gold">シークレット企画</span><br>
+      の全容を、<span class="final-marker">9/12(土)・9/13(日)</span>に大公開しちゃいます！
     </p>
     <a href="https://line.me/ti/g2/uGiBnGzHxPg2zaxeBBlS9ms6W5iAS__2Zg-8cw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" class="btn js-up">
       <img src="https://enyuya.com/LP/images/LINE_Brand_icon.png" alt="LINE">
